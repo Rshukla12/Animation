@@ -1,0 +1,88 @@
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.h {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+/* probelm 1 */
+.h1 {
+    transition: 0.5s;
+}
+.h1:hover{
+    transform: scale(1.2);
+}
+
+/* problem 2 */
+.h2 {
+    transition: all 2s;
+    opacity: 1;
+} 
+
+/* problem 3 */
+.h3 {
+    animation: slidein 5s ;
+}
+
+
+/* Problem 4 */
+.h4:hover {
+    transform: rotate(360deg);
+    transition: all 1s;
+}
+
+/* Problem 5 */
+.h5:hover {
+    animation: border-rad 1s;
+}
+@keyframes border-rad {
+    from {
+        border-radius: 0%;
+    }
+    to {
+        border-radius: 100%;
+    }
+}
+
+/* Problem 6 */
+.h6 {
+    animation: slidein 10s ease;
+}
+.h7 {
+    animation: slidein 10s ease-in;
+}
+.h8 {
+    animation: slidein 10s ease-out;
+}
+.h9 {
+    animation: slidein 10s ease-in-out;
+}
+.h10 {
+    animation: slidein 10s linear;
+}
+.h11 {
+    animation: slidein 10s cubic-bezier(.17,.67,1,.28);
+}
+.h12 {
+    animation: slidein 10s cubic-bezier(.04,1.28,1,.28);
+}
+.h13 {
+    animation: slidein 10s cubic-bezier(.98,0,.98,.02);
+}
+
+@keyframes slidein {
+    from {
+        left: 100%;
+        opacity: 1;
+        transform: scale(2);
+    }
+    to {
+      left: 0%;
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
