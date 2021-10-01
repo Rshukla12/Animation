@@ -1,0 +1,87 @@
+/* Problem 1 */
+#spinner {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 8px solid gray;
+    border-top: 8px solid black;
+    animation: ease-in-out 2s infinite spin;
+    margin: auto;
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Problem 2 */
+#menu {
+    margin: 30px 48%;
+    gap: 10px;
+    width: 50px;
+    height: 45px;
+    padding: 5px;
+    position: relative;
+}
+#menu > div {
+    position: absolute;
+    height: 8px;
+    width: 50px;
+    background-color: blue;
+    border-radius: 5px;
+}
+#line2 {
+    top: 20px;
+}
+#line3 {
+    top: 35px;
+}
+#menu:active > #line1 {
+    animation: ease-in 0.5s top-line;
+    transform: rotate(-45deg);
+    transform-origin: 45px 12px;
+}
+#menu:active > #line2 {
+    animation: mid-line 0.5s ease;
+    transform: rotate(45deg);
+    transform-origin: 22px 5px;
+}
+#menu:active > #line3 {
+    animation: bot-line 0.5s ease;
+    transform: rotate(45deg);
+    transform-origin: 40px -3px;
+}
+
+@keyframes top-line {
+    from {
+        transform: none;
+    }
+    to {
+        transform: rotate(-45deg);
+        transform-origin: 45px 12px;
+    }
+}
+
+@keyframes mid-line {
+    from {
+        transform: none;
+    }
+    to {
+        transform: rotate(45deg);
+        transform-origin: 22px 5px;
+    }
+}
+
+@keyframes bot-line {
+    from {
+        transform: none;
+    }
+    to {
+        transform: rotate(45deg);
+        transform-origin: 40px -3px;
+    }
+    
+}
