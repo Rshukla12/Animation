@@ -1,0 +1,67 @@
+#sun {
+    --img-width: 200px;
+    --moveX: 0px;
+    --time: 0s;
+}
+#mercury {
+    --img-width: calc(0.1*200px );
+    --moveX: 130px;
+    --time: 3s;
+}
+#venus {
+    --img-width: calc(0.2*200px );
+    --moveX: 175px;
+    --time: 4.5s;
+}
+#earth {
+    --img-width: calc(0.23*200px );
+    --moveX: 250px;
+    --time: 6s;
+}
+#mars {
+    --img-width: calc(0.24*200px );
+    --moveX: 310px;
+    --time: 8s;
+}
+#jupiter {
+    --img-width: calc(0.40*200px );
+    --moveX: 400px;
+    --time: 10s;
+}
+#saturn {
+    --img-width: calc(0.5*200px );
+    --moveX: 510px;
+    --time: 12s;
+}
+#uranus {
+    --img-width: calc(0.28*200px );
+    --moveX: 620px;
+    --time: 16s;
+}
+#neptune {
+    --img-width: calc(0.25*200px);
+    --moveX: 720px;
+    --time: 18s;
+}
+
+img {
+    width: var(--img-width);
+    position: absolute;
+    top: calc(50% - ( var(--img-width)/2) );
+    left: calc( 50% - ( var(--img-width)/2));
+    transform: translateX(var(--moveX));
+    animation: solarSystem var(--time) infinite linear;
+}
+
+@keyframes solarSystem {
+    from {
+        transform: rotate(0deg) translateX(var(--moveX));
+    }
+    to {
+        
+        transform: rotate(360deg) translateX(var(--moveX));
+    }
+}
+
+
+
