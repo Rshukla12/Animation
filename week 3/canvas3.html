@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess</title>
+</head>
+<body>
+    <canvas width="1000" height="1000" id="canvas">
+    </canvas>
+    <script type="text/javascript">
+        const gameSettings = {
+            offSetX: 100,
+            offSetY: 100,
+            width: 100,
+            height: 100,
+            gridSize: 8
+        }
+
+        const player = {
+            posX: 150,
+            posY: 150,
+            currentDirection: "up",
+        }
+
+        function drawGrid(){
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+
+            for ( let i = 0; i < gameSettings.gridSize; i++ ){
+                for ( let j = 0; j < gameSettings.gridSize; j++ ){
+                    if ( i % 2 === 0 && j % 2 === 0 || i % 2 !== 0 && j % 2 !== 0 ){
+                        ctx.fillStyle = "brown"; 
+                    } else {
+                        ctx.fillStyle = "black";
+                    }
+                    ctx.fillRect(
+                        gameSettings.offSetX + gameSettings.width*i,
+                        gameSettings.offSetY + gameSettings.height*j,
+                        100,
+                        100
+                    )
+                }
+            }
+            changePostion(player.currentDirection);
+            ctx.beginPath();
+            ctx.fillStyle = "white";
+            ctx.arc(
+                player.posX,
+                player.posY,
+                gameSettings.height/3,
+                0,
+                360
+            )
+            ctx.fill()
+            window.requestAnimationFrame(drawGrid);
+        }
+
+        function handleDirectionChange(event){
+            switch ( event.code ){
+                case "ArrowUp":{
+                    player.currentDirection = "up";
+                    break;
+                }
+                case "ArrowDown":{
+                    player.currentDirection = "down";
+                    break;
+                } 
+                case "ArrowLeft":{
+                    player.currentDirection = "left";
+                    break;
+                }
+                case "ArrowRight":{
+                    player.currentDirection = "right";
+                    break;
+                }
+            }
+        }
+
+
+
+        function changePostion(direction){
+            const xMin = gameSettings.offSetX;
+            const xMax = gameSettings.width * gameSettings.gridSize + gameSettings.offSetX;
+            const yMin = gameSettings.offSetY;
+            const yMax = gameSettings.height * gameSettings.gridSize + gameSettings.offSetY;
+            
+            switch( direction ){
+                case ( "left" ): {
+                    if ( player.posX + 25 < xMin ){
+                        player.posX = xMax + 25;
+                    } else {
+                        player.posX = player.posX - 1;
+                    }
+                    break;
+                } 
+                case "right":{
+                    if ( player.posX - 25 > xMax ){
+                        player.posX = xMin - 25;
+                    } else {
+                        player.posX = player.posX + 1;
+                    }
+                    break;
+                } 
+                case "up":{
+                    if ( player.posY + 25 < yMin ){
+                        player.posY = yMax + 25;
+                    } else {
+                        player.posY = player.posY - 1;
+                    }
+                    break;
+                } 
+                case "down":{
+                    if ( player.posY - 25 > yMax ){
+                        player.posY = yMin - 25;
+                    } else {
+                        player.posY = player.posY + 1;
+                    }
+                    break;
+                }
+                default : {
+                    return;
+                }
+            }
+
+        }
+
+
+        window.addEventListener("load", ()=>{
+            drawGrid();
+            document.body.addEventListener("keydown", handleDirectionChange);
+        })
+    </script>
+</body>
+</html>
